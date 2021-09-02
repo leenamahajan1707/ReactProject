@@ -1,10 +1,16 @@
 
 import './App.css';
-// import About from './components/About';
+import About from './components/About';
 import Navbar from './components/Navbar';
 import TextForm from './components/TextForm';
 import React, { useState } from 'react'
 import Alert from './components/Alert';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 
 function App() {
@@ -39,12 +45,21 @@ function App() {
 
   return (
     <>
-     <Navbar title="TextUtils" aboutText="About US" mode={mode} toggleMode = {toggleMode}/>
+    <Router>
+
+     <Navbar title="TextUtils" aboutText="About" mode={mode} toggleMode = {toggleMode}/>
      <Alert alert ={alert}/>
      <div className="container my-3">
-      <TextForm showAlert = {showAlert} heading="Enter the text to analyze below"  mode={mode}/>
-      {/* <About/> */}
+     <Switch>
+          <Route path="/about">
+            <About />
+          </Route>
+           <Route exact path="/">    {/*react will do exact matching with exact keyword otherwise it will do partial matching*/}
+            <TextForm showAlert = {showAlert} heading="Enter the text to analyze below"  mode={mode}/>
+          </Route>
+      </Switch>
     </div>
+    </Router>
     </>
     
   );
