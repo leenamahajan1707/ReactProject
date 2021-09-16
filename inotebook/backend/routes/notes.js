@@ -40,7 +40,7 @@ router.post('/addnote', fetchuser, [
     }
 })
 
-//ROUTE 3 : update an existing  Notes using: POST "/api/notes/updatenote"    require Login
+//ROUTE 3 : update an existing  Notes using: PUT "/api/notes/updatenote"    require Login
 router.put('/updatenote/:id', fetchuser, async (req, res) => {
     try {
         const { title, description, tag } = req.body;
@@ -70,5 +70,27 @@ router.put('/updatenote/:id', fetchuser, async (req, res) => {
 
 })
 
+//ROUTE 4 : delete an existing  Notes using: Delete "/api/notes/deletenote"    require Login
+router.delete('/deletenote/:id', fetchuser, async (req, res) => {
+    try {
+        //find the note to be deleted and delete it
+        let note = await Note.findById(req.params.id);
+        if (!note) {
+            return res.status(404).send("Not found")
+        }
+        //allow deletion if user owns this note
+        if (note.user.toString() !== req.user.id) {
+            return res.status(401).send("not allowed")
+        }
+
+        note = await Note.findByIdAndDelete(req.params.id)
+        res.json({ "success": "Note has been deleted", note: note });
+
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Internal server Error");
+    }
+
+})
 
 module.exports = router
