@@ -7,7 +7,6 @@ function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        fetch("")
 
         const response = await fetch("http://localhost:5000/api/auth/login", {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
@@ -45,7 +44,7 @@ function Login() {
                     <input type="password" className="form-control" value={credentials.password} onChange={onChange} name="password" id="password" />
                 </div>
 
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <button type="submit" className="btn btn-primary">Login</button>
             </form>
         </div>
     )
