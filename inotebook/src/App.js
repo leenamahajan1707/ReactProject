@@ -1,6 +1,6 @@
 
 import './App.css';
-import React from "react";
+import React, { useState } from "react";
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import About from './components/About';
@@ -10,31 +10,41 @@ import {
   Route
 } from "react-router-dom";
 import NoteState from './context/Notes/NoteState';
-import { Alert } from './components/Alert';
+import Alert from './components/Alert';
 import Login from './components/Login';
 import Signup from './components/Signup';
 
 function App() {
+  const [alert, setAlert] = useState(null) //whether dark mode is enabled or not
+  const showAlert = (message, type) => {
+    setAlert({
+      msg: message,
+      type: type
+    })
+    setTimeout(() => {
+      setAlert(null);
+    }, 1500)
+  }
   return (
     <>
       {/* with Notestate we can use state-variable in all component inside this */}
       <NoteState>
         <Router>
           <Navbar />
-          <Alert message="Hello React" />
+          <Alert alert={alert} />
           <div className="container">
             <Switch>
               <Route exact path="/">
-                <Home />
+                <Home showAlert={showAlert} />
               </Route>
               <Route exact path="/about">
                 <About />
               </Route>
               <Route exact path="/login">
-                <Login />
+                <Login showAlert={showAlert} />
               </Route>
               <Route exact path="/signup">
-                <Signup />
+                <Signup showAlert={showAlert} />
               </Route>
             </Switch>
           </div>
