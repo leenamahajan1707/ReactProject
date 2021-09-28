@@ -19,7 +19,7 @@ const NoteState = (props) => {
             method: 'GET', // *GET, POST, PUT, DELETE, etc.
             headers: {
                 'Content-Type': 'application/json',
-                'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE0MTllYTNhYzVhNWZhMWE1MDEyYmQzIn0sImlhdCI6MTYzMTY5MjM3M30.zBckE2cnrvpmvXzwWiGJ_aJe0nLc9XickNbKf-K0dCI'
+                'auth-token': localStorage.getItem('token')
             },
         });
         const json = await response.json(); // parses JSON response into native JavaScript objects
@@ -35,7 +35,7 @@ const NoteState = (props) => {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
             headers: {
                 'Content-Type': 'application/json',
-                'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE0MTllYTNhYzVhNWZhMWE1MDEyYmQzIn0sImlhdCI6MTYzMTY5MjM3M30.zBckE2cnrvpmvXzwWiGJ_aJe0nLc9XickNbKf-K0dCI'
+                'auth-token': localStorage.getItem('token')
             },
             body: JSON.stringify({ title, description, tag }) // body data type must match "Content-Type" header
         });
@@ -54,7 +54,7 @@ const NoteState = (props) => {
             method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
             headers: {
                 'Content-Type': 'application/json',
-                'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE0MTllYTNhYzVhNWZhMWE1MDEyYmQzIn0sImlhdCI6MTYzMTY5MjM3M30.zBckE2cnrvpmvXzwWiGJ_aJe0nLc9XickNbKf-K0dCI'
+                'auth-token': localStorage.getItem('token')
             },
 
         });
@@ -73,7 +73,7 @@ const NoteState = (props) => {
             method: 'PUT', // *GET, POST, PUT, DELETE, etc.
             headers: {
                 'Content-Type': 'application/json',
-                'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjE0MTllYTNhYzVhNWZhMWE1MDEyYmQzIn0sImlhdCI6MTYzMTY5MjM3M30.zBckE2cnrvpmvXzwWiGJ_aJe0nLc9XickNbKf-K0dCI'
+                'auth-token': localStorage.getItem('token')
             },
             body: JSON.stringify({ title, description, tag }) // body data type must match "Content-Type" header
         });
