@@ -1,0 +1,7 @@
+console.time("took time")
+console.log("hello")
+console.warn("hello")
+console.table({ name: 'abc', marks: 34 })
+// console.clear("hello")
+console.timeEnd("took time")
+console.assert(566 < 189, "not true")
